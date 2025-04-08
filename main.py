@@ -15,6 +15,18 @@ def main():
         elif choice == "2":
             journal.view_entries()
         elif choice == "3":
+            journal.view_entries()
+            try:
+                index = int(get_user_input("Enter entry number to delete: ")) - 1
+                journal.delete_entry(index)
+            except ValueError:
+                print("Please enter a valid number.")
+            except IndexError:
+                print("Invalid entry number.")
+        elif choice == "4":
+            search_term = get_user_input("Enter search term: ")
+            journal.search_entries(search_term)
+        elif choice == "5":
             print("Goodbye!")
             break
         else:
