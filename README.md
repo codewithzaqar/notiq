@@ -18,6 +18,7 @@ Run the program and use the menu options:
 2. View all entries - Display all existing entries
 3. Delete entry - Remove an entry by its number
 4. Search entries - Find entries by title keyword
-5. Exit - Close the application
+5. Edit entry - Modify an existing entry
+6. Exit - Close the application
 
 Entries are automatically saved to `journal_entries.json` in the same directory.
