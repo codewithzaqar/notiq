@@ -15,10 +15,11 @@ python main.py
 ## Usage
 Run the program and use the menu options:
 1. Add new entry - Create a new journal entry
-2. View all entries - Display all existing entries
+2. View all entries - Display all entries with sort option (date/title)
 3. Delete entry - Remove an entry by its number
 4. Search entries - Find entries by title keyword
 5. Edit entry - Modify an existing entry
-6. Exit - Close the application
+6. Filter by date - Show entries for a specific date
+7. Exit - Close the application
 
 Entries are automatically saved to `journal_entries.json` in the same directory.

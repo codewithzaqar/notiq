@@ -12,9 +12,10 @@ def main():
             title = get_user_input("Enter entry title: ")
             content = get_user_input("Enter entry content: ")
             category = get_user_input("Enter category (optional, press Enter to skip): ")
-            journal.add_entry(title, content), category
+            journal.add_entry(title, content, category)
         elif choice == "2":
-            journal.view_entries()
+            sort_by = get_user_input("Sort by (data/title, press Enter for default): ").lower()
+            journal.view_entries(sort_by or "date")
         elif choice == "3":
             journal.view_entries()
             try:
@@ -36,6 +37,9 @@ def main():
             except (ValueError, IndexError):
                 print("Invalid entry number")
         elif choice == "6":
+            date_filter = get_user_input("Enter date (YYYY-MM-DD) or press Enter for all: ")
+            journal.view_entries(date_filter=date_filter)
+        elif choice == "7":
             print("Goodbye!")
             break
         else:

@@ -21,11 +21,29 @@ class Journal:
         else:
             print("Failed to save entry.")
 
-    def view_entries(self):
+    def view_entries(self, sort_by="date", date_filter=""):
         if not self.entries:
             print("No entries found.")
             return
         
+        filtered_entries = self.entries
+        if date_filter:
+            try:
+                filtered_entries = [e for e in self.entries 
+                                    if e['timestamp'].startswith(date_filter)]
+                if not filtered_entries:
+                    print(f"No entries found for {date_filter}")
+                    return
+            except ValueError:
+                print("Invalid date format. Use YYYY-MM-DD")
+                return
+            
+        if sort_by == "title":
+            filtered_entries.sort(key=lambda x: x['title'].lower())
+        else:  # default to date sorting
+            filtered_entries.sort(key=lambda x: x['timestamp'], reverse=True)
+
+        print(f"\nTotal entries: {len(filtered_entries)}")
         for i, entry in enumerate(self.entries, 1):
             print(f"\nEntry #{i}")
             print(f"Title: {entry['title']}")

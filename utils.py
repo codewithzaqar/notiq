@@ -1,11 +1,12 @@
 def display_menu():
-    print("\n=== Notiq v0.03 ===")
+    print("\n=== Notiq v0.04 ===")
     print("1. Add new entry")
     print("2. View all entries")
     print("3. Delete entry")
     print("4. Search entries")
     print("5. Edit entry")
-    print("6. Exit")
+    print("6. Filter by date")
+    print("7. Exit")
     print("==================")
 
 def get_user_input(prompt):
