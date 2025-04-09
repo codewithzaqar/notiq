@@ -1,5 +1,5 @@
 def display_menu():
-    print("\n=== Notiq v0.05 ===")
+    print("\n=== Notiq v0.06 ===")
     print("1. Add new entry")
     print("2. View all entries")
     print("3. Delete entry")
@@ -11,6 +11,7 @@ def display_menu():
     print("9. Import entries")
     print("10. Exit")
     print("==================")
+    print("Tip: Use --help for command-line options")
 
 def get_user_input(prompt):
     return input(prompt).strip()
