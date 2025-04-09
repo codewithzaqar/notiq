@@ -6,7 +6,10 @@ def display_menu():
     print("4. Search entries")
     print("5. Edit entry")
     print("6. Filter by date")
-    print("7. Exit")
+    print("7. Filter by category")
+    print("8. Export entries")
+    print("9. Import entries")
+    print("10. Exit")
     print("==================")
 
 def get_user_input(prompt):

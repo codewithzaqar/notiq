@@ -40,6 +40,15 @@ def main():
             date_filter = get_user_input("Enter date (YYYY-MM-DD) or press Enter for all: ")
             journal.view_entries(date_filter=date_filter)
         elif choice == "7":
+            category_filter = get_user_input("Enter category to filter (press Enter for all): ")
+            journal.view_entries(category_filter=category_filter)
+        elif choice == "8":
+            filename = get_user_input("Enter export filename (e.g., export.json): ")
+            journal.export_entries(filename)
+        elif choice == "9":
+            filename = get_user_input("Enter import filename: ")
+            journal.import_entries(filename)
+        elif choice == "10":
             print("Goodbye!")
             break
         else:

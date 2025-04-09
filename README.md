@@ -20,6 +20,9 @@ Run the program and use the menu options:
 4. Search entries - Find entries by title keyword
 5. Edit entry - Modify an existing entry
 6. Filter by date - Show entries for a specific date
-7. Exit - Close the application
+7. Filter by category - Show entries in a specific category
+8. Export entries - Save all entries to a JSON file
+9. Import entries - Load entries from a JSON file
+10. Exit - Close the application
 
 Entries are automatically saved to `journal_entries.json` in the same directory.

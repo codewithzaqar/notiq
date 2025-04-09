@@ -1,4 +1,6 @@
 from datetime import datetime
+import json
+import re
 from storage import save_entries, load_entries
 
 class Journal:
@@ -21,21 +23,27 @@ class Journal:
         else:
             print("Failed to save entry.")
 
-    def view_entries(self, sort_by="date", date_filter=""):
+    def view_entries(self, sort_by="date", date_filter="", category_filter=""):
         if not self.entries:
             print("No entries found.")
             return
         
         filtered_entries = self.entries
         if date_filter:
-            try:
-                filtered_entries = [e for e in self.entries 
-                                    if e['timestamp'].startswith(date_filter)]
-                if not filtered_entries:
-                    print(f"No entries found for {date_filter}")
-                    return
-            except ValueError:
+            if not re.match(r'^\d{4}-\d{2}-\d{2}$', date_filter):
                 print("Invalid date format. Use YYYY-MM-DD")
+                return
+            filtered_entries = [e for e in self.entries 
+                                if e['timestamp'].startswith(date_filter)]
+            if not filtered_entries:
+                print(f"No entries found for {date_filter}")
+                return
+                
+        if category_filter:
+            filtered_entries = [e for e in filtered_entries
+                                if e.get('category', '').lower() == category_filter.lower()]
+            if not filtered_entries:
+                print(f"No entries found in category '{category_filter}'")
                 return
             
         if sort_by == "title":
@@ -92,3 +100,29 @@ class Journal:
                 print("Failed to update entry - save error.")
         else:
             raise IndexError("Entry index out of range")
+        
+    def export_entries(self, filename):
+        if not filename:
+            print("Please provide a filename!")
+            return
+        try:
+            with open(filename, 'w') as f:
+                json.dump(self.entries, f, indent=2)
+            print(f"Entries exported to {filename}")
+        except Exception as e:
+            print(f"Export failed: {e}")
+        
+    def import_entries(self, filename):
+        if not filename:
+            print("Please provide a filename!")
+            return
+        try:
+            with open(filename, 'r') as f:
+                imported_entries = json.load(f)
+            self.entries.extend(imported_entries)
+            if save_entries(self.entries):
+                print(f"Imported {len(imported_entries)} entries from {filename}")
+            else:
+                print("Failed to save imported entries")
+        except Exception as e:
+            print(f"Import failed: {e}")
