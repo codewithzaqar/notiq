@@ -25,4 +25,9 @@ Run the program and use the menu options:
 9. Import entries - Load entries from a JSON file
 10. Exit - Close the application
 
+### Command-Line Mode
+```python main.py --add "title" "content"``` Quick add entry 
+```python main.py --view``` Quick view all entries 
+```python main.py --help``` Show help
+
 Entries are automatically saved to `journal_entries.json` in the same directory.
